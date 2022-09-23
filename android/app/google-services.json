@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "280122789049",
+    "project_id": "bigsis-4a45c",
+    "storage_bucket": "bigsis-4a45c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280122789049:android:7ff9bab7fd35d7a324df68",
+        "android_client_info": {
+          "package_name": "com.example.bigsis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280122789049-e7b191b7s8qie0ev66kv6drtnu4nvuok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bigsis",
+            "certificate_hash": "f3d0da2fd985abc3cfe51ea3f4f5789a47f67f35"
+          }
+        },
+        {
+          "client_id": "280122789049-jj676buh72pis5omokdltokf6ju0q2k2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl-cJ9IUdXe6lJFixc1lt8k17ufL-56Go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280122789049-jj676buh72pis5omokdltokf6ju0q2k2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

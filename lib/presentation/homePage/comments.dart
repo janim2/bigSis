@@ -1,3 +1,4 @@
+import 'package:bigsis/core/helpers/functions.dart';
 import 'package:bigsis/presentation/homePage/homePage.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
 import 'package:bigsis/widgets/commentsCard.dart';
@@ -5,9 +6,15 @@ import 'package:bigsis/widgets/defaultButton.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/pinkCircularButton.dart';
 import 'package:bigsis/widgets/videoCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:bigsis/core/app_export.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../backend/chatroom/addChat.dart';
+import '../../widgets/toast.dart';
 
 class CommentsScreen extends StatefulWidget {
   const CommentsScreen({Key? key}) : super(key: key);
@@ -18,8 +25,40 @@ class CommentsScreen extends StatefulWidget {
 
 class _CommentsScreenState extends State<CommentsScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  String user_id = "";
   DateTime selectedDate = DateTime.now();
+
+  TextEditingController commenttextEdittingController = TextEditingController();
+  bool _isVisible = false;
+  bool showSpinner = false;
+
+  TextEditingController emailtextEdittingController = TextEditingController();
+  TextEditingController passwordTextEdittingController =
+      TextEditingController();
+
+  @override
+  void initState() {
+    FetchFromSharedPreferences();
+    super.initState();
+  }
+
+  void updateStatus() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
+  }
+
+  void stopSpinner() {
+    setState(() {
+      showSpinner = false;
+    });
+  }
+
+  void startSpinner() {
+    setState(() {
+      showSpinner = true;
+    });
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -63,7 +102,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                         SizedBox(height: 20),
 
                         TextFormField(
-                          // controller: purposetextEdittingController,
+                          controller: commenttextEdittingController,
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(20.0),
@@ -92,7 +131,23 @@ class _CommentsScreenState extends State<CommentsScreen> {
                           height: 30,
                         ),
                         Center(
-                            child: PinkCircularButton(textonButton: "Comment"))
+                            child: PinkCircularButton(
+                          textonButton: "Comment",
+                          ontap: () async {
+                            startSpinner();
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              var reg = await Comment(context,
+                                  comment: commenttextEdittingController.text);
+                              if (reg != null) {
+                                stopSpinner();
+                                showAlert(context, "error", reg.toString(), () {
+                                  Navigator.of(context).pop();
+                                });
+                              }
+                            }
+                          },
+                        ))
                         // DefaultButton(
                         //   textonButton: "Book",
                         //   ontap: () async {
@@ -167,7 +222,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Center(
                                 child: Text(
-                                  'COMMENTS',
+                                  'CHATROOM',
                                   style: TextStyle(
                                       color: Colors.pink,
                                       fontFamily: "Raleway",
@@ -183,21 +238,51 @@ class _CommentsScreenState extends State<CommentsScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(25),
-                  child: Column(
-                    children: [
-                      CommentsCard(
-                          name: "Dr.John",
-                          message:
-                              "I'm trying to create a simple widget test in Flutter. I have a custom widget that receives some values, composes a string and shows a Text with that string.",
-                          date: "30th Sep, 2022 - 18:26"),
-                      CommentsCard(
-                          name: "Sarah Bannes",
-                          message:
-                              "I'm trying to create a simple widget test in Flutter. I have a custom widget that receives some values, composes a string and shows a Text with that string.",
-                          date: "30th Sep, 2022 - 19:26"),
-                    ],
-                  ),
+                  margin: EdgeInsets.all(15),
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("chatroom")
+                          .snapshots(),
+                      builder: (builder,
+                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                              snapshots) {
+                        var dataRef = snapshots.data;
+
+                        if (snapshots.hasError) {
+                          return Text('Something went wrong');
+                        }
+
+                        if (snapshots.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            "Loading",
+                            style:
+                                TextStyle(fontFamily: "Raleway", fontSize: 15),
+                          );
+                        }
+
+                        if (snapshots.data!.docs.length == 0) {
+                          return Text("No Comments",
+                              style: TextStyle(
+                                  fontFamily: "Raleway", fontSize: 18));
+                        }
+
+                        return Column(
+                          children: [
+                            for (int k = 0;
+                                k <= snapshots.data!.docs.length - 1;
+                                k++)
+                              if (dataRef?.docs[k]['commenter_id'] == user_id)
+                                Container(
+                                  child: CommentsCard(
+                                      name: dataRef?.docs[k]['commenter_name'],
+                                      message: dataRef?.docs[k]['comment'],
+                                      date:
+                                          dateFormat(dataRef?.docs[k]['date'])),
+                                ),
+                          ],
+                        );
+                      }),
                 ),
               ],
             ),
@@ -205,5 +290,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> FetchFromSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    user_id = prefs.getString("user_id")!;
   }
 }

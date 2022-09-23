@@ -81,22 +81,16 @@ class _HealthPractionersScreenState extends State<HealthPractionersScreen> {
                     children: [
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
-                        drname: "Jesse",
-                        email: "iamjesse75@gmail.com",
-                        iswhite: false,
+                        drname: "Dr. Amo",
+                        email: "Tech Hospital",
+                        iswhite: false, //024 387 0474
                       ),
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
-                        drname: "Jesse",
-                        email: "iamjesse75@gmail.com",
+                        drname: "Dr. Derrick Amoh",
+                        email: "Ludicare Medical Services",
                         iswhite: false,
                       ),
-                      HealthWorkers(
-                        image: "assets/images/userFemale.png",
-                        drname: "Jesse",
-                        email: "iamjesse75@gmail.com",
-                        iswhite: false,
-                      )
                     ],
                   ),
                 ),

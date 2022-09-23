@@ -13,7 +13,11 @@ import 'package:bigsis/presentation/homePage/volunteer.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/informationCard.dart';
 import 'package:bigsis/widgets/pinkCircularButton.dart';
+import 'package:bigsis/widgets/toast.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../backend/auth/logout.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,6 +33,15 @@ class _HomePageState extends State<HomePage> {
   //String gender = "male"; //if you want to set default value
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  String name = "";
+  String email = "";
+
+  @override
+  initState() {
+    FetchFromSharedPreferences();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -57,14 +70,14 @@ class _HomePageState extends State<HomePage> {
                       height: 5,
                     ),
                     Text(
-                      'Boafo',
+                      name,
                       style: TextStyle(fontFamily: "Raleway", fontSize: 16),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      'admin2cleeve@gmail.com',
+                      email,
                       style: TextStyle(fontFamily: "Raleway", fontSize: 16),
                     )
                   ],
@@ -85,21 +98,21 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(builder: (context) => ProfileScreen()));
                 },
               ),
-              Divider(
-                thickness: 3,
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.art_track_outlined, color: ColorConstant.pink),
-                title: const Text(
-                  'Comments',
-                  style: TextStyle(fontFamily: "Raleway", fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => CommentsScreen()));
-                },
-              ),
+              // Divider(
+              //   thickness: 3,
+              // ),
+              // ListTile(
+              //   leading:
+              //       Icon(Icons.art_track_outlined, color: ColorConstant.pink),
+              //   title: const Text(
+              //     'Comments',
+              //     style: TextStyle(fontFamily: "Raleway", fontSize: 20),
+              //   ),
+              //   onTap: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (context) => CommentsScreen()));
+              //   },
+              // ),
               Divider(
                 thickness: 3,
               ),
@@ -139,8 +152,12 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontFamily: "Raleway", fontSize: 20),
                 ),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  showTwoButtonAlertDialog(context, "Logout",
+                      "Are you sure you want to logout?", "Stay", "Logout", () {
+                    Navigator.of(context).pop();
+                  }, () {
+                    Logout(context);
+                  });
                 },
               ),
             ],
@@ -246,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text('Name',
+                                      child: Text(name,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 25,
@@ -810,7 +827,7 @@ class _HomePageState extends State<HomePage> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ChatroomScreen()));
+                                                CommentsScreen()));
                                   },
                                   child: Container(
                                     width: double.infinity,
@@ -876,5 +893,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  FetchFromSharedPreferences() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      name = pref.getString("fullname")!;
+      email = pref.getString("email")!;
+    });
   }
 }
