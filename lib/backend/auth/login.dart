@@ -67,5 +67,7 @@ saveToPrefs(SharedPreferences prefs, DocumentSnapshot documentSnapshot) {
   prefs.setString("fullname", documentSnapshot.get("fullname"));
   prefs.setString("user_id", documentSnapshot.get("user_id"));
   prefs.setString("email", documentSnapshot.get("email"));
-  // prefs.setString("phonenumber", documentSnapshot.get("phone"));
+  prefs.setString("phone", documentSnapshot.get("phone") ?? "");
+  prefs.setString("occupation", documentSnapshot.get("occupation") ?? "");
+  prefs.setString("biography", documentSnapshot.get("biography") ?? "");
 }
