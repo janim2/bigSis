@@ -1,6 +1,7 @@
 import 'package:bigsis/presentation/homePage/homePage.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
 import 'package:bigsis/widgets/imageCard.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 
 import 'package:flutter/material.dart';
 import 'package:bigsis/core/app_export.dart';
@@ -79,34 +80,86 @@ class _PicturesScreenState extends State<PicturesScreen> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(flex: 1, child: ImageCard(image: "")),
                           Expanded(
                               flex: 1,
                               child: ImageCard(
-                                image: "",
+                                image: "assets/images/loggia/gonorhhea.jpg",
+                                ontap: () {
+                                  showImageViewer(
+                                      context,
+                                      Image.asset(
+                                              "assets/images/loggia/gonorhhea.jpg")
+                                          .image,
+                                      swipeDismissible: false);
+                                },
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: ImageCard(
+                                image: "assets/images/loggia/herpies.jpg",
+                                ontap: () {
+                                  showImageViewer(
+                                      context,
+                                      Image.asset(
+                                              "assets/images/loggia/herpies.jpg")
+                                          .image,
+                                      swipeDismissible: false);
+                                },
                               )),
                         ],
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(flex: 1, child: ImageCard(image: "")),
                           Expanded(
                               flex: 1,
                               child: ImageCard(
-                                image: "",
+                                image: "assets/images/loggia/herpesType2.jpg",
+                                ontap: () {
+                                  showImageViewer(
+                                      context,
+                                      Image.asset(
+                                              "assets/images/loggia/herpesType2.jpg")
+                                          .image,
+                                      swipeDismissible: false);
+                                },
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: ImageCard(
+                                image: "assets/images/loggia/sYPHILLIS.jpg",
+                                ontap: () {
+                                  showImageViewer(
+                                      context,
+                                      Image.asset(
+                                              "assets/images/loggia/sYPHILLIS.jpg")
+                                          .image,
+                                      swipeDismissible: false);
+                                },
                               )),
                         ],
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(flex: 1, child: ImageCard(image: "")),
                           Expanded(
                               flex: 1,
                               child: ImageCard(
-                                image: "",
+                                image: "assets/images/loggia/sYPHLISS.jpg",
+                                ontap: () {
+                                  showImageViewer(
+                                      context,
+                                      Image.asset(
+                                              "assets/images/loggia/sYPHLISS.jpg")
+                                          .image,
+                                      swipeDismissible: false);
+                                },
                               )),
+                          // Expanded(
+                          //     flex: 1,
+                          //     child: ImageCard(
+                          //       image: "assets/images/no_image.png",
+                          //     )),
                         ],
                       ),
                     ],

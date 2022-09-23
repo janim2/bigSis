@@ -1,4 +1,5 @@
 import 'package:bigsis/core/app_export.dart';
+import 'package:bigsis/presentation/homePage/about.dart';
 import 'package:bigsis/presentation/homePage/chatroom.dart';
 import 'package:bigsis/presentation/homePage/comments.dart';
 import 'package:bigsis/presentation/homePage/counsellors.dart';
@@ -138,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontFamily: "Raleway", fontSize: 20),
                 ),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AboutScreen()));
                 },
               ),
               Divider(

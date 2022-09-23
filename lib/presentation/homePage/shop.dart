@@ -1,10 +1,16 @@
+import 'package:bigsis/presentation/homePage/cravings.dart';
 import 'package:bigsis/presentation/homePage/homePage.dart';
+import 'package:bigsis/presentation/homePage/hygiene.dart';
+import 'package:bigsis/presentation/homePage/sweet_peep.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
+import 'package:bigsis/widgets/header.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/videoCard.dart';
 
 import 'package:flutter/material.dart';
 import 'package:bigsis/core/app_export.dart';
+
+import 'hygiene_lounge.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({Key? key}) : super(key: key);
@@ -44,32 +50,7 @@ class _ShopScreenState extends State<ShopScreen> {
                           size: 35,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-                        width: 275,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink, width: 2.0),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'SHOP WITH US',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Header(text: "SHOP WITH US")
                     ],
                   ),
                 ),
@@ -82,40 +63,53 @@ class _ShopScreenState extends State<ShopScreen> {
                         children: <Widget>[
                           Expanded(
                             flex: 1,
-                            child: Container(
-                                height: 130,
-                                margin: EdgeInsets.only(
-                                    bottom: 10, top: 10, right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.pink, width: 2.0),
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Text(
-                                  "Deals",
-                                  style: TextStyle(
-                                      fontFamily: "Raleway", fontSize: 20),
-                                ))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SweetPeepScreen()));
+                              },
+                              child: Container(
+                                  height: 130,
+                                  margin: EdgeInsets.only(
+                                      bottom: 10, top: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.pink, width: 2.0),
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Text(
+                                    "Sweet Peep",
+                                    style: TextStyle(
+                                        fontFamily: "Raleway", fontSize: 20),
+                                  ))),
+                            ),
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
-                                height: 130,
-                                margin: EdgeInsets.only(
-                                    bottom: 10, top: 10, right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.pink, width: 2.0),
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Text(
-                                  "Pregnancy Package",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: "Raleway", fontSize: 20),
-                                ))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        HygieneLoungeScreen()));
+                              },
+                              child: Container(
+                                  height: 130,
+                                  margin: EdgeInsets.only(
+                                      bottom: 10, top: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.pink, width: 2.0),
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Text(
+                                    "Hygiene",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: "Raleway", fontSize: 20),
+                                  ))),
+                            ),
                           ),
                         ],
                       ),
@@ -124,41 +118,53 @@ class _ShopScreenState extends State<ShopScreen> {
                         children: <Widget>[
                           Expanded(
                             flex: 1,
-                            child: Container(
-                                height: 130,
-                                margin: EdgeInsets.only(
-                                    bottom: 10, top: 10, right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.pink, width: 2.0),
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Text(
-                                  "Menstral Package",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: "Raleway", fontSize: 20),
-                                ))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CravingsScreen()));
+                              },
+                              child: Container(
+                                  height: 130,
+                                  margin: EdgeInsets.only(
+                                      bottom: 10, top: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.pink, width: 2.0),
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Text(
+                                    "Cravings Galore",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: "Raleway", fontSize: 20),
+                                  ))),
+                            ),
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
-                                height: 130,
-                                margin: EdgeInsets.only(
-                                    bottom: 10, top: 10, right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.pink, width: 2.0),
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Text(
-                                  "Disinfectant Remedy",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: "Raleway", fontSize: 20),
-                                ))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => HygieneScreen()));
+                              },
+                              child: Container(
+                                  height: 130,
+                                  margin: EdgeInsets.only(
+                                      bottom: 10, top: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.pink, width: 2.0),
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Text(
+                                    "Hygiene Lounge",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: "Raleway", fontSize: 20),
+                                  ))),
+                            ),
                           ),
                         ],
                       ),
