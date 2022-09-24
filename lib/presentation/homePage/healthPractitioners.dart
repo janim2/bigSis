@@ -1,5 +1,6 @@
 import 'package:bigsis/presentation/homePage/homePage.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
+import 'package:bigsis/widgets/header.dart';
 import 'package:bigsis/widgets/healthworkers.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/videoCard.dart';
@@ -46,32 +47,7 @@ class _HealthPractionersScreenState extends State<HealthPractionersScreen> {
                           size: 35,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-                        width: 275,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink, width: 2.0),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'Health Workers',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Header(text: "HEALTH WORKERS")
                     ],
                   ),
                 ),

@@ -1,5 +1,7 @@
 import 'package:bigsis/presentation/homePage/homePage.dart';
+import 'package:bigsis/presentation/homePage/jokes.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
+import 'package:bigsis/widgets/header.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/videoCard.dart';
 
@@ -44,32 +46,7 @@ class _ValleryScreenState extends State<ValleryScreen> {
                           size: 35,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-                        width: 275,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink, width: 2.0),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'VALLERY',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Header(text: "VALLERY")
                     ],
                   ),
                 ),
@@ -120,22 +97,28 @@ class _ValleryScreenState extends State<ValleryScreen> {
                         children: <Widget>[
                           Expanded(
                             flex: 1,
-                            child: Container(
-                                height: 130,
-                                margin: EdgeInsets.only(
-                                    bottom: 10, top: 10, right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.pink, width: 2.0),
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.white),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Image.asset(
-                                    "assets/images/emoji.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                                )),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => JokesScreen()));
+                              },
+                              child: Container(
+                                  height: 130,
+                                  margin: EdgeInsets.only(
+                                      bottom: 10, top: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.pink, width: 2.0),
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Image.asset(
+                                      "assets/images/emoji.png",
+                                      fit: BoxFit.contain,
+                                    ),
+                                  )),
+                            ),
                           ),
                           // Expanded(
                           //     flex: 1,

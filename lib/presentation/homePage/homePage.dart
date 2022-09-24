@@ -1,8 +1,16 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:bigsis/core/app_export.dart';
 import 'package:bigsis/presentation/homePage/about.dart';
 import 'package:bigsis/presentation/homePage/chatroom.dart';
 import 'package:bigsis/presentation/homePage/comments.dart';
 import 'package:bigsis/presentation/homePage/counsellors.dart';
+import 'package:bigsis/presentation/homePage/diseases/chlamydia.dart';
+import 'package:bigsis/presentation/homePage/diseases/gonorrhea.dart';
+import 'package:bigsis/presentation/homePage/diseases/herpes.dart';
+import 'package:bigsis/presentation/homePage/diseases/syphillis.dart';
+import 'package:bigsis/presentation/homePage/diseases/urinary_tract_infection.dart';
 import 'package:bigsis/presentation/homePage/healthPractitioners.dart';
 import 'package:bigsis/presentation/homePage/pictures.dart';
 import 'package:bigsis/presentation/homePage/profile.dart';
@@ -15,10 +23,13 @@ import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/informationCard.dart';
 import 'package:bigsis/widgets/pinkCircularButton.dart';
 import 'package:bigsis/widgets/toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../backend/auth/logout.dart';
+import '../../core/helpers/functions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,6 +47,33 @@ class _HomePageState extends State<HomePage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   String name = "";
   String email = "";
+  List<String> quotes = [
+    'Ask any woman and she\'ll tell you: health care for women is more expensive than it is for men. In fact, during their reproductive years, women spend 68% more on health care than men do.\n\n-Rod Blagojevich',
+    'Every human being is the author of his own health or disease.\n\n-Gautama Buddha',
+    'Women sexual health deserves the same attention as men\'s does.\n\n-Anonymous',
+    'No woman can call herself free who does not control her own body.\n\n-Margaret Sanger',
+    'Our lives begin to end the next day we become silent about things that matter.\n\n-Martin Luther King Jr.',
+    'Don’t put off till tomorrow anything you could be doing today.\n\nEmma Chase',
+    'If a woman loves her own body, she doesn’t grudge what  other women do with theirs; if she loves femaleness she champions its rights.\n\nNaomi Wolf',
+    'I’m interested in women’s health care because I’m a woman. I’d be a darn fool not to be on my own side.\n\n-Maya Anjelou',
+    'Being a healthy woman isn’t about getting on a scale or measuring your waistline. We need to start focusing on what matters, on how we feel, and how we feel about ourselves.\n\n-Michelle Obama',
+    'Women’s health needs to be front and center. It often isn’t,  but it needs to be.\n\n-Cynthia Nixon',
+    'A woman’s health is her capital.\n\n-Harriet Beecher Stowe',
+    'If you check the health of a woman, you check the health of society.\n\n-Rebecca Milner',
+    'At the end of the day,  your health is your responsibility.\n\n-Anonymous',
+    'Ama: If you want to see a man’s true colours, get pregnant for him.\nYaa: Because of colour I should get pregnant.',
+    'Patient: “Doctor, doctor, I think I am losing my memory!”\nDoctor: “When did that happen?”\nPatient: “When did what happen?”',
+    'Why is a doctor always calm?\nThey have a lot of patients.',
+    'Doctor: “I have some bad news and some very bad news.”\nPatient: “Well, might as well give me the bad news first.”\nDoctor: “The lab called with your test results. They said you have 24 hours to live.”\nPatient: “24 HOURS! That’s terrible!! What could be worse? What’s the very bad news?”\nDoctor: “I’ve been trying to reach you since yesterday.”',
+    'When I told the doctor about my loss of memory, he made me pay in advance.',
+    'Patient: “Doctor, are the test results ready yet? I’m dying of curiosity!”\nDoctor: “Heh… not only from curiosity.”',
+    'Patient: “Someone decided to graffiti my house last night!”\nDoctor: “So why are you telling me?”\nPatient: “I can’t understand the writing. Was it you?”',
+    'My dermatologist was fired today.\nI’m told he made too many rash decisions.'
+  ];
+
+  String thequote = "";
+
+  String remotePDFpath = "";
 
   @override
   initState() {
@@ -283,13 +321,27 @@ class _HomePageState extends State<HomePage> {
                                     color: ColorConstant.pink,
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(30.0),
-                                  child: Text(
-                                    '"We live in an imbalanced society when it comes to encouraging male sexuality and discouraging female sexuality."',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontFamily: "Raleway"),
+                                  padding: const EdgeInsets.all(25.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        thequote,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontFamily: "Raleway"),
+                                      ),
+                                      // Align(
+                                      //   alignment: Alignment.centerRight,
+                                      //   child: Text(
+                                      //     "- $thewriter",
+                                      //     style: TextStyle(
+                                      //         color: Colors.white,
+                                      //         fontSize: 20,
+                                      //         fontFamily: "Raleway"),
+                                      //   ),
+                                      // ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -468,24 +520,75 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontFamily: "Raleway",
-                                        fontSize: 27,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
-                              InformationCard(textonButton: ""),
+                              // PdfView(path: 'assets/pdf/CHLAMYDIA.pdf'),
+                              InformationCard(
+                                  textonButton: "Chlamydia",
+                                  ontap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ChlamydiaScreen(),
+                                      ),
+                                    );
+                                  }),
                               SizedBox(
                                 height: 20,
                               ),
-                              InformationCard(textonButton: ""),
+                              InformationCard(
+                                  textonButton: "Genital Herpes",
+                                  ontap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HerpesScreen(),
+                                      ),
+                                    );
+                                  }),
                               SizedBox(
                                 height: 20,
                               ),
-                              InformationCard(textonButton: ""),
+                              InformationCard(
+                                  textonButton: "Gonorrhea",
+                                  ontap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => GonorrheaScreen(),
+                                      ),
+                                    );
+                                  }),
                               SizedBox(
                                 height: 20,
                               ),
-                              InformationCard(textonButton: ""),
+                              InformationCard(
+                                  textonButton: "Syphillis",
+                                  ontap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SyphillisScreen(),
+                                      ),
+                                    );
+                                  }),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              InformationCard(
+                                  textonButton: "Urinary Tract Infection",
+                                  ontap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UrinaryTractScreen(),
+                                      ),
+                                    );
+                                  }),
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
@@ -496,7 +599,7 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontFamily: "Raleway",
-                                        fontSize: 27,
+                                        fontSize: 24,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -898,9 +1001,11 @@ class _HomePageState extends State<HomePage> {
 
   FetchFromSharedPreferences() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
+
     setState(() {
       name = pref.getString("fullname")!;
       email = pref.getString("email")!;
+      thequote = (quotes.toSet().toList()..shuffle()).take(1).toList()[0];
     });
   }
 }

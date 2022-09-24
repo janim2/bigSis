@@ -3,6 +3,7 @@ import 'package:bigsis/presentation/homePage/homePage.dart';
 import 'package:bigsis/presentation/login_screen/login_screen.dart';
 import 'package:bigsis/widgets/commentsCard.dart';
 import 'package:bigsis/widgets/defaultButton.dart';
+import 'package:bigsis/widgets/header.dart';
 import 'package:bigsis/widgets/imageCard.dart';
 import 'package:bigsis/widgets/pinkCircularButton.dart';
 import 'package:bigsis/widgets/videoCard.dart';
@@ -208,32 +209,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                           size: 35,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-                        width: 275,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink, width: 2.0),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'CHATROOM',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Header(text: "CHATROOM")
                     ],
                   ),
                 ),
@@ -272,14 +248,12 @@ class _CommentsScreenState extends State<CommentsScreen> {
                             for (int k = 0;
                                 k <= snapshots.data!.docs.length - 1;
                                 k++)
-                              if (dataRef?.docs[k]['commenter_id'] == user_id)
-                                Container(
-                                  child: CommentsCard(
-                                      name: dataRef?.docs[k]['commenter_name'],
-                                      message: dataRef?.docs[k]['comment'],
-                                      date:
-                                          dateFormat(dataRef?.docs[k]['date'])),
-                                ),
+                              Container(
+                                child: CommentsCard(
+                                    name: dataRef?.docs[k]['commenter_name'],
+                                    message: dataRef?.docs[k]['comment'],
+                                    date: dateFormat(dataRef?.docs[k]['date'])),
+                              ),
                           ],
                         );
                       }),
@@ -295,5 +269,6 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Future<void> FetchFromSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     user_id = prefs.getString("user_id")!;
+    print(user_id);
   }
 }

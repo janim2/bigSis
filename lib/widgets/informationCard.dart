@@ -25,7 +25,7 @@ class InformationCard extends StatelessWidget {
             child: Text(
               textonButton,
               style: TextStyle(
-                  fontFamily: "Raleway", fontSize: 30, color: Colors.white),
+                  fontFamily: "Raleway", fontSize: 25, color: Colors.white),
             ),
           ),
         ),

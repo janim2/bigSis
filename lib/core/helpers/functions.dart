@@ -61,3 +61,8 @@ fetchUserPhone(String user_id) async {
     return e;
   }
 }
+
+// loadFile(asset) async {
+//   PDFDocument pdf = await PDFDocument.fromAsset(asset);
+//   return pdf;
+// }
