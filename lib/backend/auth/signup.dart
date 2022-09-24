@@ -61,6 +61,9 @@ addUser(BuildContext context, String profile_image, String user_id,
     "user_id": user_id,
     "fullname": fullname,
     "email": email,
+    "phone": "",
+    "occupation": "",
+    "biography": ""
   };
 
   await documentReferencer

@@ -6,6 +6,8 @@ import 'package:bigsis/widgets/videoCard.dart';
 import 'package:flutter/material.dart';
 import 'package:bigsis/core/app_export.dart';
 
+import '../../widgets/header.dart';
+
 class VideosScreen extends StatefulWidget {
   const VideosScreen({Key? key}) : super(key: key);
 
@@ -44,32 +46,7 @@ class _VideosScreenState extends State<VideosScreen> {
                           size: 35,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-                        width: 275,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink, width: 2.0),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'VIDEOS',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Header(text: "Videos")
                     ],
                   ),
                 ),
