@@ -309,6 +309,9 @@ class _JokesScreenState extends State<JokesScreen> {
                               color: Colors.white),
                         ),
                       ),
+                      SizedBox(
+                        height: 40,
+                      ),
                     ],
                   ),
                 ),

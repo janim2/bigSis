@@ -232,15 +232,19 @@ class _CommentsScreenState extends State<CommentsScreen> {
                             ConnectionState.waiting) {
                           return Text(
                             "Loading",
-                            style:
-                                TextStyle(fontFamily: "Raleway", fontSize: 15),
+                            style: TextStyle(
+                                fontFamily: "Raleway",
+                                fontSize: 15,
+                                color: Colors.white),
                           );
                         }
 
                         if (snapshots.data!.docs.length == 0) {
                           return Text("No Comments",
                               style: TextStyle(
-                                  fontFamily: "Raleway", fontSize: 18));
+                                  fontFamily: "Raleway",
+                                  fontSize: 18,
+                                  color: Colors.white));
                         }
 
                         return Column(

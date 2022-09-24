@@ -183,7 +183,7 @@ class _ChlamydiaScreenState extends State<ChlamydiaScreen> {
                         "You should never wait for chlamydia to go away on its own. Left untreated, chlamydia can cause serious harm to your health. If you are sexually active, you run the risk of infecting others, putting them at risk of experiencing severe complications as well",
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 50,
                       ),
                     ],
                   ),

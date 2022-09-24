@@ -142,6 +142,9 @@ class _GonorrheaScreenState extends State<GonorrheaScreen> {
                       title("CAN I GET GONORRHEA AGAIN?"),
                       message(
                           "Yes. Repeat gonorrhea infections are common in people who don’t carefully protect themselves."),
+                      SizedBox(
+                        height: 50,
+                      ),
                     ],
                   ),
                 ),

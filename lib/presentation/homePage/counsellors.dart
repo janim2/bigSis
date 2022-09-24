@@ -58,30 +58,35 @@ class _CounsellorsScreenState extends State<CounsellorsScreen> {
                         image: "assets/images/userFemale.png",
                         drname: "Dr. Emmanuel Hopeson",
                         email: "Counsellor",
+                        phone: "",
                         iswhite: true,
                       ),
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
                         drname: "Mrs. Victoria De-Graft Adjei",
-                        email: "Counsellor", //024 426 3984
+                        email: "Counsellor",
+                        phone: "0244263984",
                         iswhite: true,
                       ),
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
                         drname: "Mrs. Bernice S.O. Peasah",
-                        email: "Counsellor", //055 339 4255
+                        email: "Counsellor",
+                        phone: "0553394255",
                         iswhite: true,
                       ),
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
                         drname: "Mr. Gilbert Konwie Langu",
-                        email: "Counsellor", //024 200 5566
+                        email: "Counsellor",
+                        phone: "0242005566",
                         iswhite: true,
                       ),
                       HealthWorkers(
                         image: "assets/images/userFemale.png",
                         drname: "Dr. Elizabeth A.S. Fordjour",
-                        email: "Counsellor", //020 708 7380
+                        email: "Counsellor",
+                        phone: "0207087380",
                         iswhite: true,
                       )
                     ],

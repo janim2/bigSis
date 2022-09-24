@@ -35,6 +35,6 @@ Future<String?> Comment(BuildContext context, {required comment}) async {
 }
 
 success(BuildContext context) {
-  Get.back();
   showToast("Comment added successfully");
+  Navigator.of(context).pop();
 }

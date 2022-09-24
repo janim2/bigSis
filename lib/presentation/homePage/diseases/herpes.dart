@@ -114,7 +114,7 @@ class _HerpesScreenState extends State<HerpesScreen> {
                       message(
                           "1. Apply an ice pack to your genitals. Wrap the ice pack in a washcloth or apply it over yourunderwear.\n2. Keep your genitals dry. Wear cotton or other non-synthetic underpants and avoid tight-fitting clothes. Moist sores take longer to heal.\n3. Soak in a warm bath.\n4. .Take nonsteroidal anti-inflammatory drugs (NSAIDs) to relieve pain.\n5. Topical 1\% or 2\% lidocaine may be used as a topical analgesic."),
                       SizedBox(
-                        height: 10,
+                        height: 50,
                       ),
                     ],
                   ),

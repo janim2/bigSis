@@ -16,7 +16,7 @@ class Header extends StatelessWidget {
       onTap: ontap,
       child: Container(
         margin: EdgeInsets.only(bottom: 20, top: 20, right: 20),
-        width: 275,
+        width: 235,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.pink, width: 2.0),
             borderRadius: BorderRadius.circular(20),

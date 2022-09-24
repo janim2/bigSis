@@ -126,7 +126,7 @@ class _SyphillisScreenState extends State<SyphillisScreen> {
                       message(
                           "If you’ve been treated for syphilis, you aren’t immune to it. You can get the infection again after treatment. That’s why it’s important to practice safe sex and get tested often if you have a high risk of infection."),
                       SizedBox(
-                        height: 10,
+                        height: 50,
                       ),
                     ],
                   ),

@@ -207,12 +207,12 @@ class _HomePageState extends State<HomePage> {
             // home page
             Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    "assets/images/homepage_bg.jpg",
-                    alignment: Alignment.topLeft,
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Image.asset(
+                //     "assets/images/homepage_bg.jpg",
+                //     alignment: Alignment.topLeft,
+                //   ),
+                // ),
                 Positioned.fill(
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -250,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     Container(
-                      color: Colors.transparent,
+                      color: Colors.white,
                       child: SingleChildScrollView(
                         child: Container(
                           padding: const EdgeInsets.all(16.0),
@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                         scaffoldKey.currentState?.openDrawer(),
                                   ),
                                   SizedBox(
-                                      width: 270,
+                                      width: 260,
                                       child: PinkCircularButton(
                                           textonButton: 'HOME')),
                                 ],
@@ -291,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                                               color: ColorConstant.pink,
                                               fontFamily: "Raleway",
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 40),
+                                              fontSize: 30),
                                         ),
                                         Image(
                                           image: AssetImage(
@@ -305,7 +305,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Text(name,
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 25,
+                                            fontSize: 23,
                                             fontFamily: "Raleway",
                                             fontWeight: FontWeight.bold,
                                           )),
@@ -328,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                                         thequote,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontFamily: "Raleway"),
                                       ),
                                       // Align(
@@ -359,7 +359,7 @@ class _HomePageState extends State<HomePage> {
                                     'Talk to me.\n Any problem down there?',
                                     style: TextStyle(
                                         color: ColorConstant.pink,
-                                        fontSize: 22,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "Raleway"),
                                   ),
@@ -377,12 +377,12 @@ class _HomePageState extends State<HomePage> {
             //book page
             Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    "assets/images/homepage_bg.jpg",
-                    alignment: Alignment.topLeft,
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Image.asset(
+                //     "assets/images/homepage_bg.jpg",
+                //     alignment: Alignment.topLeft,
+                //   ),
+                // ),
                 Positioned.fill(
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -446,7 +446,7 @@ class _HomePageState extends State<HomePage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           bottom: 20, top: 20, right: 20),
-                                      width: 275,
+                                      width: 235,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Colors.pink, width: 2.0),
@@ -466,7 +466,7 @@ class _HomePageState extends State<HomePage> {
                                                     color: ColorConstant.pink,
                                                     fontFamily: "Raleway",
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 25),
+                                                    fontSize: 23),
                                               ),
                                             ),
                                           ),
@@ -499,111 +499,129 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Container(
-                                width: double.infinity,
-                                child: Center(
-                                  child: Text(
-                                    'WHAT WILL YOU LIKE TO KNOW',
-                                    style: TextStyle(
-                                      color: Colors.pink,
-                                      fontFamily: "Raleway",
-                                      fontSize: 20,
+                                height: size.height - 300,
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      child: Center(
+                                        child: Text(
+                                          'WHAT WILL YOU LIKE TO KNOW',
+                                          style: TextStyle(
+                                            color: Colors.pink,
+                                            fontFamily: "Raleway",
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      width: double.infinity,
+                                      child: Center(
+                                        child: Text(
+                                          'About your sexual health',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: "Raleway",
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                    // PdfView(path: 'assets/pdf/CHLAMYDIA.pdf'),
+                                    InformationCard(
+                                        textonButton: "Chlamydia",
+                                        ontap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ChlamydiaScreen(),
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    InformationCard(
+                                        textonButton: "Genital Herpes",
+                                        ontap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HerpesScreen(),
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    InformationCard(
+                                        textonButton: "Gonorrhea",
+                                        ontap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  GonorrheaScreen(),
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    InformationCard(
+                                        textonButton: "Syphillis",
+                                        ontap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SyphillisScreen(),
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    InformationCard(
+                                        textonButton: "Urinary Tract Infection",
+                                        ontap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UrinaryTractScreen(),
+                                            ),
+                                          );
+                                        }),
+                                    GestureDetector(
+                                      onTap: () {
+                                        showToast("No information yet");
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 30.0, top: 30),
+                                          child: Text(
+                                            "For more Info",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: "Raleway",
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 20),
-                                width: double.infinity,
-                                child: Center(
-                                  child: Text(
-                                    'About your sexual health',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: "Raleway",
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              // PdfView(path: 'assets/pdf/CHLAMYDIA.pdf'),
-                              InformationCard(
-                                  textonButton: "Chlamydia",
-                                  ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ChlamydiaScreen(),
-                                      ),
-                                    );
-                                  }),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              InformationCard(
-                                  textonButton: "Genital Herpes",
-                                  ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HerpesScreen(),
-                                      ),
-                                    );
-                                  }),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              InformationCard(
-                                  textonButton: "Gonorrhea",
-                                  ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => GonorrheaScreen(),
-                                      ),
-                                    );
-                                  }),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              InformationCard(
-                                  textonButton: "Syphillis",
-                                  ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SyphillisScreen(),
-                                      ),
-                                    );
-                                  }),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              InformationCard(
-                                  textonButton: "Urinary Tract Infection",
-                                  ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            UrinaryTractScreen(),
-                                      ),
-                                    );
-                                  }),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 30.0, top: 30),
-                                  child: Text(
-                                    "For more Info",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: "Raleway",
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         ),
@@ -617,12 +635,12 @@ class _HomePageState extends State<HomePage> {
             //LOGGIA PAGE STARTS HERE
             Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    "assets/images/homepage_bg.jpg",
-                    alignment: Alignment.topLeft,
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Image.asset(
+                //     "assets/images/homepage_bg.jpg",
+                //     alignment: Alignment.topLeft,
+                //   ),
+                // ),
                 Positioned.fill(
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -684,7 +702,7 @@ class _HomePageState extends State<HomePage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           bottom: 20, top: 20, right: 20),
-                                      width: 275,
+                                      width: 235,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Colors.pink, width: 2.0),
@@ -703,7 +721,7 @@ class _HomePageState extends State<HomePage> {
                                                 style: TextStyle(
                                                     color: Colors.pink,
                                                     fontFamily: "Raleway",
-                                                    fontSize: 30),
+                                                    fontSize: 23),
                                               ),
                                             ),
                                           ),
@@ -774,12 +792,12 @@ class _HomePageState extends State<HomePage> {
             //PLAZA STARTS HERE
             Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    "assets/images/homepage_bg.jpg",
-                    alignment: Alignment.topLeft,
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Image.asset(
+                //     "assets/images/homepage_bg.jpg",
+                //     alignment: Alignment.topLeft,
+                //   ),
+                // ),
                 Positioned.fill(
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -843,7 +861,7 @@ class _HomePageState extends State<HomePage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           bottom: 20, top: 20, right: 20),
-                                      width: 275,
+                                      width: 235,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Colors.pink, width: 2.0),
@@ -945,7 +963,7 @@ class _HomePageState extends State<HomePage> {
                                         "Chatroom",
                                         style: TextStyle(
                                             fontFamily: "Raleway",
-                                            fontSize: 30,
+                                            fontSize: 25,
                                             color: Colors.white),
                                       ),
                                     ),
@@ -977,7 +995,7 @@ class _HomePageState extends State<HomePage> {
                                         "Volunteer",
                                         style: TextStyle(
                                             fontFamily: "Raleway",
-                                            fontSize: 30,
+                                            fontSize: 25,
                                             color: Colors.white),
                                       ),
                                     ),

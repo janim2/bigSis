@@ -1,3 +1,4 @@
+import 'package:bigsis/core/helpers/functions.dart';
 import 'package:flutter/material.dart';
 
 import '../core/app_export.dart';
@@ -7,6 +8,7 @@ class HealthWorkers extends StatelessWidget {
   String image;
   String drname;
   String email;
+  String phone;
   bool iswhite;
   final ontap;
 
@@ -15,6 +17,7 @@ class HealthWorkers extends StatelessWidget {
       {required this.image,
       required this.drname,
       required this.email,
+      required this.phone,
       required this.iswhite,
       this.ontap});
 
@@ -42,14 +45,19 @@ class HealthWorkers extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    drname,
-                    style: TextStyle(
-                        fontSize: 18,
-                        color:
-                            iswhite ? Colors.white : ColorConstant.defaultBlue,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Raleway"),
+                  SizedBox(
+                    width: size.width / 2,
+                    child: Text(
+                      drname,
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: 18,
+                          color: iswhite
+                              ? Colors.white
+                              : ColorConstant.defaultBlue,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Raleway"),
+                    ),
                   ),
                   Text(
                     email,
@@ -60,64 +68,76 @@ class HealthWorkers extends StatelessWidget {
                             iswhite ? Colors.white : ColorConstant.defaultBlue,
                         fontFamily: "Raleway"),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(3),
-                          width: 60,
-                          margin: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: iswhite
-                                ? Colors.white
-                                : ColorConstant.defaultBlue,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.0),
+                  phone == ""
+                      ? Text("")
+                      : Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                launchCaller(phone);
+                              },
+                              child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  width: 60,
+                                  margin: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: iswhite
+                                        ? Colors.white
+                                        : ColorConstant.defaultBlue,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50.0),
+                                    ),
+                                  ),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Call",
+                                      style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontFamily: "Raleway",
+                                        fontSize: 12,
+                                        color: iswhite
+                                            ? ColorConstant.defaultBlue
+                                            : Colors.white,
+                                      ),
+                                    ),
+                                  ))),
                             ),
-                          ),
-                          child: Center(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Call",
-                              style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontFamily: "Raleway",
-                                fontSize: 12,
-                                color: iswhite
-                                    ? ColorConstant.defaultBlue
-                                    : Colors.white,
-                              ),
+                            InkWell(
+                              onTap: () {
+                                launchWhatsapp(context, phone);
+                              },
+                              child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  margin: EdgeInsets.all(5),
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    color: iswhite
+                                        ? Colors.white
+                                        : ColorConstant.defaultBlue,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50.0),
+                                    ),
+                                  ),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Whatsapp",
+                                      style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontFamily: "Raleway",
+                                        fontSize: 12,
+                                        color: iswhite
+                                            ? ColorConstant.defaultBlue
+                                            : Colors.white,
+                                      ),
+                                    ),
+                                  ))),
                             ),
-                          ))),
-                      Container(
-                          padding: EdgeInsets.all(3),
-                          margin: EdgeInsets.all(5),
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: iswhite
-                                ? Colors.white
-                                : ColorConstant.defaultBlue,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.0),
-                            ),
-                          ),
-                          child: Center(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Whatsapp",
-                              style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontFamily: "Raleway",
-                                fontSize: 12,
-                                color: iswhite
-                                    ? ColorConstant.defaultBlue
-                                    : Colors.white,
-                              ),
-                            ),
-                          ))),
-                    ],
-                  )
+                          ],
+                        )
                 ],
               ),
             ],

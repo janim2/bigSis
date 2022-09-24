@@ -21,6 +21,15 @@ launchWhatsapp(BuildContext context, String phone) async {
   }
 }
 
+launchCaller(String tel) async {
+  var url = Uri.parse("tel:$tel");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 dateFormat(Timestamp the_date) {
   DateTime dt = (the_date).toDate();
   return DateFormat('EEEE, d MMM, yyyy').format(dt);
